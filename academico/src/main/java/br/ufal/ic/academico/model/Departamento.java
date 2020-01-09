@@ -22,11 +22,13 @@ public class Departamento {
     private Long id;
     private String nome;
     
-    @OneToOne
-    @OneToMany
-    @ManyToOne
-    @ManyToMany
+//    @OneToOne
+//    @OneToMany
+//    @ManyToMany
+//    @ManyToOne
     
+    
+    @ManyToOne
     private Universidade universidade;
 
     public Departamento(String nome, Universidade universidade) {

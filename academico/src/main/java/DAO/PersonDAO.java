@@ -1,4 +1,4 @@
-package br.ufal.ic.academico.exemplos;
+package DAO;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import java.io.Serializable;
@@ -7,10 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
-/**
- *
- * @author Willy
- */
+import br.ufal.ic.academico.exemplos.Person;
+
+
 @Slf4j
 public class PersonDAO extends AbstractDAO<Person> {
     

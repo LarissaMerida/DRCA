@@ -1,6 +1,10 @@
-package br.ufal.ic.academico.exemplos;
+package resources;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import DAO.PersonDAO;
+import DTO.PersonDTO;
+import br.ufal.ic.academico.exemplos.Person;
 import io.dropwizard.hibernate.UnitOfWork;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -110,20 +114,5 @@ public class MyResource {
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 
-    @Getter
-    @RequiredArgsConstructor
-    @AllArgsConstructor
-    @ToString
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class PersonDTO {
-        
-        private String name;
-        private int number;
-        
-//        public PersonDTO(Person p) {
-//        	this.name = p.getName();
-//        	this.number = p.getId();
-//        };;
-        
-    }
+    
 }

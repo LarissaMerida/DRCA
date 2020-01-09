@@ -1,13 +1,13 @@
 package br.ufal.ic.academico;
 
-import br.ufal.ic.academico.exemplos.MyResource;
 import br.ufal.ic.academico.exemplos.Person;
-import br.ufal.ic.academico.exemplos.PersonDAO;
 import ch.qos.logback.classic.Level;
 import io.dropwizard.logging.BootstrapLogging;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit5.DropwizardAppExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
+import resources.MyResource;
+
 import java.util.List;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
@@ -15,6 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import DAO.PersonDAO;
+
 import static org.mockito.Mockito.mock;
 
 /**

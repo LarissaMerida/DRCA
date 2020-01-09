@@ -1,8 +1,7 @@
 package br.ufal.ic.academico;
 
-import br.ufal.ic.academico.exemplos.MyResource;
+import DAO.PersonDAO;
 import br.ufal.ic.academico.exemplos.Person;
-import br.ufal.ic.academico.exemplos.PersonDAO;
 import br.ufal.ic.academico.model.Departamento;
 import br.ufal.ic.academico.model.Secretaria;
 import br.ufal.ic.academico.model.Universidade;
@@ -12,6 +11,7 @@ import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
+import resources.MyResource;
 
 @Slf4j
 public class AcademicoApp extends Application<ConfigApp> {

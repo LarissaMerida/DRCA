@@ -1,8 +1,6 @@
 package br.ufal.ic.academico;
 
-import br.ufal.ic.academico.exemplos.MyResource;
 import br.ufal.ic.academico.exemplos.Person;
-import br.ufal.ic.academico.exemplos.PersonDAO;
 import ch.qos.logback.classic.Level;
 import io.dropwizard.logging.BootstrapLogging;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
@@ -11,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.Entity;
 import lombok.SneakyThrows;
+import resources.MyResource;
+
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.eclipse.jetty.server.Authentication.User;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
@@ -19,6 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import DAO.PersonDAO;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

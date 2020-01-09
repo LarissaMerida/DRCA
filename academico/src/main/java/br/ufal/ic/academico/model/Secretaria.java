@@ -12,10 +12,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- *
- * @author tarcisofilho
- */
+
 @RequiredArgsConstructor
 @Entity
 @Getter
