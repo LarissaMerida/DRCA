@@ -82,7 +82,7 @@ public class MyResource {
         Person p = new Person(entity.getName());
         p.setScore(entity.getNumber());
         //new StudentDTO(studentDAO.persist(s))).build();
-        return Response.ok().build();
+        return Response.ok(personDAO.persist(p)).build();
     }
 
     @PUT

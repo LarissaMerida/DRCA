@@ -90,9 +90,9 @@ public class ResourceTest {
         
         Person p = new Person("nova person");
         
-//        assertThrows(WebApplicationException.class, () -> {
-//            
-//            RULE.target("/exemplos/" + (expected.getId()+1)).request().post(Entity.json(p), Person.class);
-//        }, "null");
+        assertThrows(WebApplicationException.class, () -> {
+            
+            RULE.target("/exemplos/" + (expected.getId()+1)).request().post(Entity.json(p), Person.class);
+        }, "null");
     }
 }
