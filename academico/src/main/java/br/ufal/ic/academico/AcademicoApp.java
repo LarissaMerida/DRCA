@@ -13,10 +13,6 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- *
- * @author Willy
- */
 @Slf4j
 public class AcademicoApp extends Application<ConfigApp> {
 
@@ -37,12 +33,23 @@ public class AcademicoApp extends Application<ConfigApp> {
 
     @Override
     public void run(ConfigApp config, Environment environment) {
-        
+    	
+    	System.out.print("AAAAAA" +config+ environment);
         final PersonDAO dao = new PersonDAO(hibernate.getSessionFactory());
+        log.info("RUn", dao);
 
         final MyResource resource = new MyResource(dao);
+//        log.info("AAAAAA", resource);
+//        int id3 = 0;
+//        log.info("getMensage: id={}", id3);
+//        Person p = new Person("lARISSA");
+//        log.info("getID: id={}", p.getId());;;
+
+        //resource.personDAO.persist(p);
         
         environment.jersey().register(resource);
+        
+        
     }
 
     private final HibernateBundle<ConfigApp> hibernate

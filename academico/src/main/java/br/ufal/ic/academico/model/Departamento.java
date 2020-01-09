@@ -11,10 +11,7 @@ import javax.persistence.OneToOne;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- *
- * @author tarcisofilho
- */
+
 @Getter
 @RequiredArgsConstructor
 @Entity
