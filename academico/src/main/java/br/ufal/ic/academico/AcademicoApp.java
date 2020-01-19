@@ -1,6 +1,8 @@
 package br.ufal.ic.academico;
 
+import DAO.DepartamentoDAO;
 import DAO.PersonDAO;
+import DAO.UniversidadeDAO;
 import br.ufal.ic.academico.exemplos.Person;
 import br.ufal.ic.academico.model.Departamento;
 import br.ufal.ic.academico.model.Secretaria;
@@ -11,7 +13,9 @@ import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
+import resources.DepartamentoController;
 import resources.MyResource;
+import resources.UniversidadeController;
 
 @Slf4j
 public class AcademicoApp extends Application<ConfigApp> {
@@ -34,22 +38,20 @@ public class AcademicoApp extends Application<ConfigApp> {
     @Override
     public void run(ConfigApp config, Environment environment) {
     	
-    	System.out.print("AAAAAA" +config+ environment);
         final PersonDAO dao = new PersonDAO(hibernate.getSessionFactory());
-        log.info("RUn", dao);
+        final UniversidadeDAO universidadeDao = new UniversidadeDAO(hibernate.getSessionFactory());
+        final DepartamentoDAO departamentoDao = new DepartamentoDAO(hibernate.getSessionFactory());
+
 
         final MyResource resource = new MyResource(dao);
-//        log.info("AAAAAA", resource);
-//        int id3 = 0;
-//        log.info("getMensage: id={}", id3);
-//        Person p = new Person("lARISSA");
-//        log.info("getID: id={}", p.getId());;;
-
-        //resource.personDAO.persist(p);
+        final UniversidadeController universidadeController = new UniversidadeController(universidadeDao);
+        final DepartamentoController departamentoController = new DepartamentoController(departamentoDao, universidadeDao);
+        
+        log.info("AAAAAA", resource);
         
         environment.jersey().register(resource);
-        
-        
+        environment.jersey().register(universidadeController);
+        environment.jersey().register(departamentoController);  
     }
 
     private final HibernateBundle<ConfigApp> hibernate
