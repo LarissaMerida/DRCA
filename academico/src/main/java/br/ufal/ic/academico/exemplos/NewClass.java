@@ -1,6 +1,10 @@
-package br.ufal.ic.academico.model;
+package br.ufal.ic.academico.exemplos;
 
 import static br.ufal.ic.academico.model.Secretaria.SecretariaTipo.GRADUACAO;
+
+import br.ufal.ic.academico.model.Departamento;
+import br.ufal.ic.academico.model.Secretaria;
+import br.ufal.ic.academico.model.Universidade;
 
 /**
  *

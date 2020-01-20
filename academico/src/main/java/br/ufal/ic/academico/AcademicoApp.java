@@ -3,14 +3,16 @@ package br.ufal.ic.academico;
 import DAO.CursoDAO;
 import DAO.DepartamentoDAO;
 import DAO.DisciplinaDAO;
-import DAO.PersonDAO;
+import DAO.EstudanteDAO;
 import DAO.ProfessorDAO;
 import DAO.SecretariaDAO;
 import DAO.UniversidadeDAO;
 import br.ufal.ic.academico.exemplos.Person;
+import br.ufal.ic.academico.exemplos.PersonDAO;
 import br.ufal.ic.academico.model.Curso;
 import br.ufal.ic.academico.model.Departamento;
 import br.ufal.ic.academico.model.Disciplina;
+import br.ufal.ic.academico.model.Estudante;
 import br.ufal.ic.academico.model.Professor;
 import br.ufal.ic.academico.model.Secretaria;
 import br.ufal.ic.academico.model.Universidade;
@@ -24,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 import resources.CursoController;
 import resources.DepartamentoController;
 import resources.DisciplinaController;
+import resources.EstudanteController;
 import resources.MyResource;
 import resources.ProfessorController;
 import resources.SecretariaController;
@@ -58,6 +61,7 @@ public class AcademicoApp extends Application<ConfigApp> {
         final DisciplinaDAO disciplinaDAO = new DisciplinaDAO(hibernate.getSessionFactory());
         final ProfessorDAO professorDAO = new ProfessorDAO(hibernate.getSessionFactory());
         final CursoDAO cursoDAO = new CursoDAO(hibernate.getSessionFactory());
+        final EstudanteDAO estudanteDAO = new EstudanteDAO(hibernate.getSessionFactory());
 
 
         final MyResource resource = new MyResource(dao);
@@ -67,6 +71,8 @@ public class AcademicoApp extends Application<ConfigApp> {
         final DisciplinaController disciplinaController = new DisciplinaController(disciplinaDAO );
         final ProfessorController professorController = new ProfessorController(professorDAO );
         final CursoController cursoController = new CursoController(cursoDAO);
+        final EstudanteController estudanteController = new EstudanteController(estudanteDAO);
+        
         
         log.info("AAAAAA", resource);
         
@@ -76,11 +82,13 @@ public class AcademicoApp extends Application<ConfigApp> {
         environment.jersey().register(secretariaController);  
         environment.jersey().register(disciplinaController); 
         environment.jersey().register(cursoController); 
+        environment.jersey().register(estudanteController); 
     }
 
     private final HibernateBundle<ConfigApp> hibernate
             = new HibernateBundle<ConfigApp>(Person.class, Universidade.class,
-                    Departamento.class, Secretaria.class, Disciplina.class, Professor.class, Curso.class) {
+                    Departamento.class, Secretaria.class, Disciplina.class, Professor.class, 
+                    Curso.class, Estudante.class) {
         
         @Override
         public DataSourceFactory getDataSourceFactory(ConfigApp configuration) {

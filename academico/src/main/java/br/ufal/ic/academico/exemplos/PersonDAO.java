@@ -1,4 +1,4 @@
-package DAO;
+package br.ufal.ic.academico.exemplos;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import java.io.Serializable;
@@ -6,8 +6,6 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
-
-import br.ufal.ic.academico.exemplos.Person;
 
 
 @Slf4j

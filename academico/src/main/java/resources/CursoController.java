@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Produces(MediaType.APPLICATION_JSON)
 public class CursoController {
-	public final CursoDAO<Curso> cursoDAO;
+	public final CursoDAO cursoDAO;
 	
 	@GET
     @UnitOfWork

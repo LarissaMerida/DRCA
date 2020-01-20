@@ -12,14 +12,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public  class PersonDTO {
+public  class EstudanteDTO {
     
-    private String name;
-    private int number;
-    
-//    public PersonDTO(Person p) {
-//    	this.name = p.getName();
-//    	this.number = p.getId();
-//    };;
+    private String nome;
     
 }

@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import br.ufal.ic.academico.model.Curso;
 
 @Slf4j
-public class CursoDAO<Curso> extends AbstractDAO<Curso> {
+public class CursoDAO extends AbstractDAO<Curso> {
 
 	public CursoDAO(SessionFactory sessionFactory) {
         super(sessionFactory);
