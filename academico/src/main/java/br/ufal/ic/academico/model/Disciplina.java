@@ -5,10 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 @RequiredArgsConstructor
 public class Disciplina {
@@ -20,9 +24,11 @@ public class Disciplina {
 	private Long creditos;
 	private Long min_creditos;
 	
-	public Disciplina(Long id, String nome) {
+	public Disciplina( String nome) {
 		super();
-		this.id = id;
+		if (StringUtils.isBlank(nome)) {
+            throw new IllegalArgumentException("nome não pode ser nulo ou vazio: '" + nome + "'");
+        }
 		this.nome = nome;
 	}
 	

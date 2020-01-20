@@ -7,6 +7,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 import br.ufal.ic.academico.model.Disciplina;
+import br.ufal.ic.academico.model.Universidade;
 import io.dropwizard.hibernate.AbstractDAO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,5 +33,10 @@ public class DisciplinaDAO extends AbstractDAO<Disciplina>{
     public Disciplina persist(Disciplina entity) throws HibernateException {
         return super.persist(entity);
     }
-	
+
+    public void remove(Disciplina entity)throws HibernateException {
+    	log.info("deletting disciplina: id={}", entity.getId());
+ 
+    	super.currentSession().delete(entity);
+    }
 }

@@ -7,6 +7,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 import br.ufal.ic.academico.model.Professor;
+import br.ufal.ic.academico.model.Universidade;
 import io.dropwizard.hibernate.AbstractDAO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,4 +34,9 @@ public class ProfessorDAO extends AbstractDAO<Professor>{
         return super.persist(entity);
     }
 	
+    public void remove(Professor entity)throws HibernateException {
+    	log.info("deletting professor: id={}", entity.getId());
+ 
+    	super.currentSession().delete(entity);
+    }
 }

@@ -14,7 +14,7 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public  class DisciplinaDTO {
     
-    private String name;
+    private String nome;
     
 	private Long creditos;
 	private Long min_creditos;

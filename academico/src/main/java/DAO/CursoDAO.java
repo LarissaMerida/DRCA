@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import lombok.extern.slf4j.Slf4j;
+import br.ufal.ic.academico.model.Curso;
 
 @Slf4j
 public class CursoDAO<Curso> extends AbstractDAO<Curso> {
@@ -19,7 +20,7 @@ public class CursoDAO<Curso> extends AbstractDAO<Curso> {
     @Override
     public Curso get(Serializable id) throws HibernateException {
         log.info("getting curso: id={}", id);
-        return super.get(id);
+        return (Curso) super.get(id);
     }
     
     public List<Curso> list() throws HibernateException {
@@ -30,5 +31,12 @@ public class CursoDAO<Curso> extends AbstractDAO<Curso> {
     @Override
     public Curso persist(Curso entity) throws HibernateException {
         return super.persist(entity);
+    }
+    
+    public void remove(Curso entity) throws HibernateException {
+    	
+    	log.info("deletting course: id={}",  ((br.ufal.ic.academico.model.Curso) entity).getId() );
+ 
+    	super.currentSession().delete(entity);
     }
 }

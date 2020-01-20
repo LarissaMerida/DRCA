@@ -14,7 +14,7 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public  class ProfessorDTO {
     
-    private String name;
+    private String nome;
     
 //    public PersonDTO(Person p) {
 //    	this.name = p.getName();
