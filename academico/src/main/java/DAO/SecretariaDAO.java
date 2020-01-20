@@ -7,6 +7,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 import br.ufal.ic.academico.model.Secretaria;
+import br.ufal.ic.academico.model.Universidade;
 import io.dropwizard.hibernate.AbstractDAO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,5 +33,10 @@ public class SecretariaDAO extends AbstractDAO<Secretaria>{
     public Secretaria persist(Secretaria entity) throws HibernateException {
         return super.persist(entity);
     }
-	
+    
+    public void remove(Secretaria entity)throws HibernateException {
+    	log.info("deletting secretary: id={}", entity.getId());
+ 
+    	super.currentSession().delete(entity);
+    }
 }

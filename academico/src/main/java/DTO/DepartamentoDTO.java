@@ -19,6 +19,8 @@ import lombok.ToString;
 public  class DepartamentoDTO {
     
     private String nome;
-    private String universidade;
+    private Universidade universidade;
+    
+    private Long id_universidade;
    
 }

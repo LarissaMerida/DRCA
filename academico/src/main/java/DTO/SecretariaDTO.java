@@ -1,10 +1,13 @@
 package DTO;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.ufal.ic.academico.model.Departamento;
+import br.ufal.ic.academico.model.Secretaria.SecretariaTipo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +20,13 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public  class SecretariaDTO {
     
-    private String name;
-    
     @ManyToOne
     private Departamento departamento;
     
-//    public PersonDTO(Person p) {
-//    	this.name = p.getName();
-//    	this.number = p.getId();
-//    };;
+    private Long id_departamento;
+    
+    @Enumerated(EnumType.STRING)
+    private SecretariaTipo tipo;
+    
     
 }

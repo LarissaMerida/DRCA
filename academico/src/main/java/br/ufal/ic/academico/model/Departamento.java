@@ -13,8 +13,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 
+@Setter
 @Getter
 @RequiredArgsConstructor
 @Entity

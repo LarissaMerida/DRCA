@@ -7,6 +7,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 import br.ufal.ic.academico.model.Departamento;
+import br.ufal.ic.academico.model.Universidade;
 import io.dropwizard.hibernate.AbstractDAO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,6 +32,12 @@ public class DepartamentoDAO extends AbstractDAO<Departamento>{
     @Override
     public Departamento persist(Departamento entity) throws HibernateException {
         return super.persist(entity);
+    }
+    
+    public void remove(Departamento entity)throws HibernateException {
+    	log.info("deletting departamento: id={}", entity.getId());
+ 
+    	super.currentSession().delete(entity);
     }
 	
 }

@@ -10,12 +10,14 @@ import javax.persistence.ManyToOne;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 
 @RequiredArgsConstructor
 @Entity
 @Getter
+@Setter
 @ToString(of = { "id", "tipo" })
 @EqualsAndHashCode(of = "id")
 public class Secretaria {
