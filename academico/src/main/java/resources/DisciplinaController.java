@@ -1,5 +1,11 @@
 package resources;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -39,9 +45,17 @@ public class DisciplinaController {
     public Response save(DisciplinaDTO entity) {
         log.info("Subjects - save: {}", entity);
         
-        Disciplina disciplina = new Disciplina(entity.getNome());
-        disciplina.setCreditos( entity.getCreditos() );
-        disciplina.setMin_creditos( entity.getMin_creditos() );
+        Disciplina disciplina = new Disciplina(entity.getNome(), entity.getTipo(), entity.getNivel());
+        
+        if( entity.getCreditos() != null ) {
+        	disciplina.setCreditos( entity.getCreditos() );	
+        }
+        else {
+        	disciplina.setCreditos( (long) 0 );
+        }
+        
+        entity.getIds_pre_disciplinas().stream()
+        								.forEach(  s -> disciplina.getPre_disciplinas().add( disciplinaDAO.get( s))  );
         
         return Response.ok(disciplinaDAO.persist(disciplina)).build();
     }
@@ -66,9 +80,17 @@ public class DisciplinaController {
         log.info("Subject - update: id={}, {}", id, entity);
         
         Disciplina disciplina = disciplinaDAO.get(id);
-        disciplina.setCreditos( entity.getCreditos() );
-        disciplina.setMin_creditos( entity.getMin_creditos() );
-
+        
+        if( entity.getCreditos() != null ) {
+        	disciplina.setCreditos( entity.getCreditos() );	
+        }
+        else {
+        	disciplina.setCreditos( (long) 0 );
+        }
+        
+        entity.getIds_pre_disciplinas().stream()
+        								.forEach(  s -> disciplina.getPre_disciplinas().add( disciplinaDAO.get( s))  );
+      
         return Response.ok(disciplinaDAO.persist(  disciplina )).build();
     }
 	
