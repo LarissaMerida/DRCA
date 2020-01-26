@@ -1,5 +1,9 @@
 package br.ufal.ic.academico.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +24,11 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@ToString(of = { "id", "tipo" })
+//@ToString(of = { "id", "tipo" })
 @EqualsAndHashCode(of = "id")
 public class Secretaria {
 
-    public enum SecretariaTipo {
+    public enum Tipo {
         GRADUACAO, POS_GRADUACAO
     }
     
@@ -34,10 +40,14 @@ public class Secretaria {
     private Departamento departamento;
     
     @Enumerated(EnumType.STRING)
-    private SecretariaTipo tipo;
+    private Tipo tipo;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Curso> cursos;
 
-    public Secretaria(Departamento departamento, SecretariaTipo tipo) {
+    public Secretaria(Departamento departamento, Tipo tipo) {
         this.departamento = departamento;
         this.tipo = tipo;
+        this.cursos = new ArrayList<Curso>();
     }    
 }

@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.ufal.ic.academico.model.Disciplina;
-import br.ufal.ic.academico.model.Disciplina.DisciplinaNivel;
+import br.ufal.ic.academico.model.Estudante;
+import br.ufal.ic.academico.model.Professor;
+import br.ufal.ic.academico.model.Secretaria.Tipo;
 import br.ufal.ic.academico.model.Disciplina.DisciplinaTipo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,10 +41,14 @@ public  class DisciplinaDTO {
     private DisciplinaTipo tipo;
 	
 	@Enumerated(EnumType.STRING)
-    private DisciplinaNivel nivel;
-    
-	private List<Long> ids_pre_disciplinas =  Arrays.asList();
+    private Tipo nivel;
 	
-	@ManyToMany
-    private List<Disciplina> pre_disciplinas;
+	@ElementCollection
+	private List<Long> pre_disciplinas =  Arrays.asList();
+	
+	@OneToOne
+	private Professor professor;
+	
+	private Long id_professor;
+	
 }

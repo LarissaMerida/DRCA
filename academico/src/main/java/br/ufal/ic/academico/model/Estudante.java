@@ -1,9 +1,16 @@
 package br.ufal.ic.academico.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -13,22 +20,26 @@ import lombok.Setter;
 
 
 @Entity
+@Setter
 @Getter
 @RequiredArgsConstructor
-public class Estudante {
+public class Estudante extends Person {
+    private Long score;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @OneToOne
+    private Curso curso;
+    @ElementCollection
+    private List<Long> pre_disciplinas;
     
-    private String nome;
+    @ElementCollection
+    private List<Disciplina> disciplinas;
     
-    @Setter private int score;
 
-    public Estudante(String nome) {
-    	if (StringUtils.isBlank(nome)) {
-            throw new IllegalArgumentException("nome não pode ser nulo ou vazio: '" + nome + "'");
-        }
-        this.nome = nome;
+    public Estudante(String nome, Curso curso) {
+    	super(nome);
+        this.score = (long) 0;
+        this.pre_disciplinas = new ArrayList<Long>();
+        this.disciplinas = new ArrayList<Disciplina>();
+        this.curso = curso;
     }
 }

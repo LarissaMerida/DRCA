@@ -18,8 +18,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import DAO.DisciplinaDAO;
+import DAO.ProfessorDAO;
 import DTO.DisciplinaDTO;
 import br.ufal.ic.academico.model.Disciplina;
+import br.ufal.ic.academico.model.Professor;
 import io.dropwizard.hibernate.UnitOfWork;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @Produces(MediaType.APPLICATION_JSON)
 public class DisciplinaController {
 	public final DisciplinaDAO disciplinaDAO;
+	public final ProfessorDAO professorDAO;
 	
 	@GET
     @UnitOfWork
@@ -50,13 +53,17 @@ public class DisciplinaController {
         if( entity.getCreditos() != null ) {
         	disciplina.setCreditos( entity.getCreditos() );	
         }
-        else {
-        	disciplina.setCreditos( (long) 0 );
+
+        
+        if( entity.getMin_creditos() != null ) {
+        	disciplina.setMin_creditos(entity.getMin_creditos() );	
         }
         
-        entity.getIds_pre_disciplinas().stream()
-        								.forEach(  s -> disciplina.getPre_disciplinas().add( disciplinaDAO.get( s))  );
+        disciplina.setPre_disciplinas( entity.getPre_disciplinas() );
         
+        Professor professor = professorDAO.get( entity.getId_professor() );
+        
+        disciplina.setProfessor( professor );
         return Response.ok(disciplinaDAO.persist(disciplina)).build();
     }
 	
@@ -84,13 +91,17 @@ public class DisciplinaController {
         if( entity.getCreditos() != null ) {
         	disciplina.setCreditos( entity.getCreditos() );	
         }
-        else {
-        	disciplina.setCreditos( (long) 0 );
+        
+        if( entity.getMin_creditos() != null ) {
+        	disciplina.setMin_creditos(entity.getMin_creditos() );	
         }
         
-        entity.getIds_pre_disciplinas().stream()
-        								.forEach(  s -> disciplina.getPre_disciplinas().add( disciplinaDAO.get( s))  );
-      
+        disciplina.setPre_disciplinas( entity.getPre_disciplinas() );
+        
+        Professor professor = professorDAO.get( entity.getId_professor() );
+        
+        disciplina.setProfessor( professor );
+        
         return Response.ok(disciplinaDAO.persist(  disciplina )).build();
     }
 	

@@ -1,5 +1,7 @@
 package resources;
 
+import java.util.List;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,8 +13,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import DAO.CursoDAO;
+import DAO.DepartamentoDAO;
+import DAO.DisciplinaDAO;
 import DTO.CursoDTO;
 import br.ufal.ic.academico.model.Curso;
+import br.ufal.ic.academico.model.Departamento;
+import br.ufal.ic.academico.model.Disciplina;
 import io.dropwizard.hibernate.UnitOfWork;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 @Produces(MediaType.APPLICATION_JSON)
 public class CursoController {
 	public final CursoDAO cursoDAO;
+	public final DisciplinaDAO disciplinaDAO;
+	public final DepartamentoDAO departamentoDAO;
 	
 	@GET
     @UnitOfWork
@@ -38,7 +46,20 @@ public class CursoController {
     public Response save(CursoDTO entity) {
         log.info("Courses - save: {}", entity);
         
-        Curso curso = new Curso( entity.getNome() );
+        Departamento d = departamentoDAO.get( entity.getId_departamento() );
+        log.info("Departamento:", d);
+        
+        Curso curso = new Curso( entity.getNome(), entity.getTipo(), d );
+
+        entity.getDisciplinas()
+				.stream()
+				.forEach(s -> {
+					Disciplina disciplina = disciplinaDAO.get(s);
+					
+        			if( curso.getTipo() == disciplina.getNivel() ) {
+        				curso.getDisciplinas().add( disciplina );
+        			}
+				});
         
         return Response.ok(cursoDAO.persist(curso)).build();
     }
@@ -63,6 +84,22 @@ public class CursoController {
         log.info("Course - update: id={}, {}", id, entity);
         
         Curso curso = cursoDAO.get(id);
+        curso.setTipo( entity.getTipo() );
+        
+        Departamento d = departamentoDAO.get( entity.getId_departamento() );
+        curso.setDepartamento( d );
+        
+        curso.getDisciplinas().removeAll( curso.getDisciplinas() );
+        
+        entity.getDisciplinas()
+			.stream()
+			.forEach(s -> {
+				Disciplina disciplina = disciplinaDAO.get(s);
+				
+				if( curso.getTipo() == disciplina.getNivel() ) {
+					curso.getDisciplinas().add( disciplina );
+				}
+			});
 
        
         return Response.ok(cursoDAO.persist(  curso )).build();

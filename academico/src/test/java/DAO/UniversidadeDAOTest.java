@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import br.ufal.ic.academico.exemplos.Person;
+import br.ufal.ic.academico.model.Person;
 import br.ufal.ic.academico.model.Universidade;
 import io.dropwizard.testing.junit5.DAOTestExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;

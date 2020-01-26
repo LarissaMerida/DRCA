@@ -7,16 +7,16 @@ import DAO.EstudanteDAO;
 import DAO.ProfessorDAO;
 import DAO.SecretariaDAO;
 import DAO.UniversidadeDAO;
-import br.ufal.ic.academico.exemplos.Person;
 import br.ufal.ic.academico.exemplos.PersonDAO;
 import br.ufal.ic.academico.model.Curso;
 import br.ufal.ic.academico.model.Departamento;
 import br.ufal.ic.academico.model.Disciplina;
 import br.ufal.ic.academico.model.Estudante;
+import br.ufal.ic.academico.model.Person;
 import br.ufal.ic.academico.model.Professor;
 import br.ufal.ic.academico.model.Secretaria;
 import br.ufal.ic.academico.model.Universidade;
-import br.ufal.ic.academico.model.Secretaria.SecretariaTipo;
+import br.ufal.ic.academico.model.Secretaria.Tipo;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
@@ -27,6 +27,7 @@ import resources.CursoController;
 import resources.DepartamentoController;
 import resources.DisciplinaController;
 import resources.EstudanteController;
+import resources.MatriculaController;
 import resources.MyResource;
 import resources.ProfessorController;
 import resources.SecretariaController;
@@ -34,7 +35,7 @@ import resources.UniversidadeController;
 
 @Slf4j
 public class AcademicoApp extends Application<ConfigApp> {
-	private SecretariaTipo tipo;
+	private Tipo tipo;
 	
     public static void main(String[] args) throws Exception {
         new AcademicoApp().run(args);
@@ -67,11 +68,12 @@ public class AcademicoApp extends Application<ConfigApp> {
         final MyResource resource = new MyResource(dao);
         final UniversidadeController universidadeController = new UniversidadeController(universidadeDao);
         final DepartamentoController departamentoController = new DepartamentoController(departamentoDao, universidadeDao);
-        final SecretariaController secretariaController = new SecretariaController(departamentoDao, secretariaDAO );
-        final DisciplinaController disciplinaController = new DisciplinaController(disciplinaDAO );
+        final CursoController cursoController = new CursoController(cursoDAO,disciplinaDAO, departamentoDao);
+        final SecretariaController secretariaController = new SecretariaController(departamentoDao, secretariaDAO , cursoDAO);
         final ProfessorController professorController = new ProfessorController(professorDAO );
-        final CursoController cursoController = new CursoController(cursoDAO);
-        final EstudanteController estudanteController = new EstudanteController(estudanteDAO);
+        final DisciplinaController disciplinaController = new DisciplinaController(disciplinaDAO ,professorDAO);
+        final EstudanteController estudanteController = new EstudanteController(estudanteDAO, cursoDAO);
+        final MatriculaController matriculaController = new MatriculaController(estudanteDAO, disciplinaDAO);
         
         
         log.info("AAAAAA", resource);
@@ -81,8 +83,10 @@ public class AcademicoApp extends Application<ConfigApp> {
         environment.jersey().register(departamentoController);  
         environment.jersey().register(secretariaController);  
         environment.jersey().register(disciplinaController); 
+        environment.jersey().register(professorController); 
         environment.jersey().register(cursoController); 
         environment.jersey().register(estudanteController); 
+        environment.jersey().register(matriculaController); 
     }
 
     private final HibernateBundle<ConfigApp> hibernate

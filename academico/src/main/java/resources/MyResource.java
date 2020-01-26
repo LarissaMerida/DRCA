@@ -2,9 +2,9 @@ package resources;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.ufal.ic.academico.exemplos.Person;
 import br.ufal.ic.academico.exemplos.PersonDAO;
 import br.ufal.ic.academico.exemplos.PersonDTO;
+import br.ufal.ic.academico.model.Person;
 import io.dropwizard.hibernate.UnitOfWork;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -65,7 +65,7 @@ public class MyResource {
         //int id = 0;
         //log.info("getMensage: id={}", entity.getName() );
         Person p = new Person("lARISSA");
-        p.setScore(1000);
+        //p.setScore(1000);
         //log.info("getID: id={}", p.getId());
 
         //personDAO.persist(p);
@@ -84,7 +84,7 @@ public class MyResource {
         log.info("save: {}", entity);
         
         Person p = new Person(entity.getName());
-        p.setScore(entity.getNumber());
+        //p.setScore(entity.getNumber());
         //new StudentDTO(studentDAO.persist(s))).build();
         return Response.ok(personDAO.persist(p)).build();
     }

@@ -10,15 +10,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import DAO.CursoDAO;
 import DAO.DepartamentoDAO;
 import DAO.SecretariaDAO;
 import DTO.DepartamentoDTO;
 import DTO.SecretariaDTO;
 import DTO.UniversidadeDTO;
+import br.ufal.ic.academico.model.Curso;
 import br.ufal.ic.academico.model.Departamento;
 import br.ufal.ic.academico.model.Secretaria;
 import br.ufal.ic.academico.model.Universidade;
-import br.ufal.ic.academico.model.Secretaria.SecretariaTipo;
 import io.dropwizard.hibernate.UnitOfWork;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ public class SecretariaController {
 	public final DepartamentoDAO departamentoDAO;
 //	public final SecretariaTipo tipo;
 	public final SecretariaDAO secretariaDAO;
+	public final CursoDAO cursoDAO;
 	
 	
 	@GET
@@ -52,6 +54,16 @@ public class SecretariaController {
         
         Secretaria secretaria = new Secretaria( d, entity.getTipo());
         
+        entity.getCursos()
+        		.stream()
+        		.forEach(s -> {
+        			Curso curso = cursoDAO.get(s);
+        			if( secretaria.getTipo() == curso.getTipo() ) {
+        				secretaria.getCursos().add( curso );
+        			}
+        		});
+        
+        System.out.println( entity.getCursos() );
         return Response.ok(secretariaDAO.persist(secretaria)).build();
 	}
 	
@@ -79,6 +91,17 @@ public class SecretariaController {
         Secretaria secretaria = secretariaDAO.get(id);
         secretaria.setDepartamento( d );
         secretaria.setTipo( entity.getTipo() );
+        
+        secretaria.getCursos().removeAll(secretaria.getCursos());
+        
+        entity.getCursos()
+				.stream()
+				.forEach(s -> {
+					Curso curso = cursoDAO.get(s);
+					if( secretaria.getTipo() == curso.getTipo() ) {
+						secretaria.getCursos().add( curso );
+					}
+				});
 
         return Response.ok(secretariaDAO.persist(  secretaria )).build();
     }

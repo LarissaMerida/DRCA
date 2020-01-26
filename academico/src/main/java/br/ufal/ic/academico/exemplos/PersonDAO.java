@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
+import br.ufal.ic.academico.model.Person;
+
 
 @Slf4j
 public class PersonDAO extends AbstractDAO<Person> {
