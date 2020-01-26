@@ -55,8 +55,13 @@ public class UniversidadeController {
 	    log.info("Universit - getById: id={}", id);
 	        
 	    Universidade universidade = UniversidadeDAO.get(id);
+	    
+	    
+	    if( universidade != null) {
+	    	return Response.ok(universidade).build();	
+	    }
+	    return Response.status(400).entity("Universidade com id = " + id+" não existe.").build();
 
-        return Response.ok(universidade).build();
     }
 	
 	@PUT
@@ -67,10 +72,14 @@ public class UniversidadeController {
         log.info("University - update: id={}, {}", id, entity);
         
         Universidade universidade = UniversidadeDAO.get(id);
-        universidade.setNome( entity.getNome() );
-        universidade.setTelefone( entity.getTelefone() );
-
-        return Response.ok(UniversidadeDAO.persist(  universidade )).build();
+        
+        if( universidade != null ) {
+        	universidade.setNome( entity.getNome() );
+        	universidade.setTelefone( entity.getTelefone() );
+        	
+        	return Response.ok(UniversidadeDAO.persist(  universidade )).build();
+        }
+        return Response.status(400).entity("Universidade com id = " + id+" não existe.").build();
     }
 	
 	@DELETE
@@ -81,11 +90,14 @@ public class UniversidadeController {
         log.info("delete: id={}", id);
 
         Universidade universidade = UniversidadeDAO.get(id);
-        System.out.println( universidade.getNome() );
         
-        UniversidadeDAO.remove(universidade);
-    
-        
-        return Response.status(Response.Status.NO_CONTENT).build();
+        if( universidade != null) {
+        	System.out.println( universidade.getNome() );
+        	
+        	UniversidadeDAO.remove(universidade);
+        	
+        	return Response.status(400).entity("Universidade com id = " + id + " removida.").build();
+        }
+        return Response.status(400).entity("Universidade com id = " + id+" não existe.").build();
     }
 }

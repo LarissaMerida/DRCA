@@ -57,8 +57,12 @@ public class DepartamentoController {
 	    log.info("Department - getById: id={}", id);
 	        
 	    Departamento departamento = departamentoDAO.get(id);
+	    
+	    if( departamento != null) {
+	    	return Response.ok(departamento).build();	    	
+	    }
+	    return Response.status(400).entity("Departamento com id = " + id+" não existe.").build();
 
-        return Response.ok(departamento).build();
     }
 	
 	@PUT
@@ -72,11 +76,14 @@ public class DepartamentoController {
         
         Departamento departamento = departamentoDAO.get(id);
         
-        departamento.setNome( entity.getNome() );
-        departamento.setUniversidade( u );
+        if( departamento != null) {
+        	departamento.setNome( entity.getNome() );
+        	departamento.setUniversidade( u );
+        	
+        	return Response.ok(departamentoDAO.persist(  departamento )).build();
+        }
+        return Response.status(400).entity("Departamento com id = " + id+" não existe.").build();
         
-
-        return Response.ok(departamentoDAO.persist(  departamento )).build();
     }
 	
 	@DELETE
@@ -87,11 +94,14 @@ public class DepartamentoController {
         log.info("Department - delete: id={}", id);
 
         Departamento departamento = departamentoDAO.get(id);
-        System.out.println( departamento.getNome() );
         
-        departamentoDAO.remove(departamento);
-    
-        
-        return Response.status(Response.Status.NO_CONTENT).build();
+        if( departamento != null) {
+        	System.out.println( departamento.getNome() );
+        	
+        	departamentoDAO.remove(departamento);        	
+        	
+        	return Response.status(Response.Status.NO_CONTENT).build();
+        }
+        return Response.status(400).entity("Departamento com id = " + id+" não existe.").build();
     }
 }

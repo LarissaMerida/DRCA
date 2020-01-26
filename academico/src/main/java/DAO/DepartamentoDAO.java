@@ -21,7 +21,13 @@ public class DepartamentoDAO extends AbstractDAO<Departamento>{
     @Override
     public Departamento get(Serializable id) throws HibernateException {
         log.info("getting departamento: id={}", id);
-        return super.get(id);
+        
+        Departamento departamento = super.get(id);
+        
+        if(departamento != null) {
+        	return departamento;
+        }
+        return null;
     }
     
     public List<Departamento> list() throws HibernateException {
@@ -35,9 +41,11 @@ public class DepartamentoDAO extends AbstractDAO<Departamento>{
     }
     
     public void remove(Departamento entity)throws HibernateException {
-    	log.info("deletting departamento: id={}", entity.getId());
- 
-    	super.currentSession().delete(entity);
+    	if( entity != null) {
+    		log.info("deletting departamento: id={}", entity.getId());    		
+    		super.currentSession().delete(entity);
+    		//super.currentSession().remove(entity);
+    	}
     }
 	
 }

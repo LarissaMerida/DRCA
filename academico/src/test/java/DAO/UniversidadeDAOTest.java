@@ -1,10 +1,18 @@
 package DAO;
 
+
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,6 +49,12 @@ public class UniversidadeDAOTest {
         Universidade saved = dbTesting.inTransaction(() -> dao.persist(u));
         
         assertNotNull(saved);
+        
+        assertAll(
+	        		() -> assertThrows(IllegalArgumentException.class, () -> { new Universidade(""); }),
+	        		() -> assertThrows(IllegalArgumentException.class, () -> { new Universidade(null); })
+        		);
+        
         
         assertAll(
         			() -> assertNotNull(saved.getId()),
@@ -86,6 +100,15 @@ public class UniversidadeDAOTest {
         
         assertNull( u3 );
         
+        List<Universidade> univer = new ArrayList<Universidade>();
+        univer.add( u );
+        
+        //assertArrayEquals( univer, dbTesting.inTransaction(() -> dao.list())  );
+        
+        assertTrue(univer.equals(  dbTesting.inTransaction(() -> dao.list())  ));
+        //assertNull( dbTesting.inTransaction(() -> dao.get( 0 )));
+        
+        
     }
     
     @Test
@@ -117,6 +140,8 @@ public class UniversidadeDAOTest {
         u.setNome("UFAL");
         assertEquals(u.getNome(), saved.getNome()); 
         assertEquals(u3.getNome(), saved.getNome()); 
+        
+        
     }
     
     @Test

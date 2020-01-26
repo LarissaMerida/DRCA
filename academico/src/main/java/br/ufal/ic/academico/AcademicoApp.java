@@ -75,9 +75,6 @@ public class AcademicoApp extends Application<ConfigApp> {
         final EstudanteController estudanteController = new EstudanteController(estudanteDAO, cursoDAO);
         final MatriculaController matriculaController = new MatriculaController(estudanteDAO, disciplinaDAO);
         
-        
-        log.info("AAAAAA", resource);
-        
         environment.jersey().register(resource);
         environment.jersey().register(universidadeController);
         environment.jersey().register(departamentoController);  

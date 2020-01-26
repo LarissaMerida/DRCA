@@ -19,13 +19,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-@RequiredArgsConstructor
 @Entity
 @Getter
 @Setter
 //@ToString(of = { "id", "tipo" })
-@EqualsAndHashCode(of = "id")
+//@EqualsAndHashCode(of = "id")
 public class Secretaria {
 
     public enum Tipo {
@@ -46,6 +44,9 @@ public class Secretaria {
     private List<Curso> cursos;
 
     public Secretaria(Departamento departamento, Tipo tipo) {
+    	if(departamento == null){
+    		throw new NullPointerException("Departamento não pode ser nulo.");
+    	}
         this.departamento = departamento;
         this.tipo = tipo;
         this.cursos = new ArrayList<Curso>();

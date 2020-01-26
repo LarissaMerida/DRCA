@@ -22,7 +22,12 @@ public class UniversidadeDAO extends AbstractDAO<Universidade>{
     @Override
     public Universidade get(Serializable id) throws HibernateException {
         log.info("getting universidade: id={}", id);
-        return super.get(id);
+        Universidade universidade = super.get(id);
+        
+        if( universidade != null) {
+        	return universidade;
+        }
+        return null;
     }
     
     public List<Universidade> list() throws HibernateException {

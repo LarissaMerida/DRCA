@@ -21,7 +21,12 @@ public class SecretariaDAO extends AbstractDAO<Secretaria>{
     @Override
     public Secretaria get(Serializable id) throws HibernateException {
         log.info("getting secretaria: id={}", id);
-        return super.get(id);
+        
+        Secretaria secretaria = super.get(id);
+        if( secretaria != null) {
+        	return secretaria;
+        }
+        return null;
     }
     
     public List<Secretaria> list() throws HibernateException {
