@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Entity
 public class Professor extends Person {
 	

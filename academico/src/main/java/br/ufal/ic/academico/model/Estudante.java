@@ -22,7 +22,6 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@RequiredArgsConstructor
 public class Estudante extends Person {
     private Long score;
     
@@ -40,6 +39,10 @@ public class Estudante extends Person {
         this.score = (long) 0;
         this.pre_disciplinas = new ArrayList<Long>();
         this.disciplinas = new ArrayList<Disciplina>();
+        
+        if (curso == null) {
+            throw new NullPointerException("Curso não pode ser nulo.");
+        }
         this.curso = curso;
     }
 }

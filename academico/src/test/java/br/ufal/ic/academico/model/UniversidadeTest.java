@@ -24,9 +24,10 @@ public class UniversidadeTest {
         
     	universidade.setTelefone("3312-1212");
     	universidade.setId((long) 1);
+    	universidade.setNome( "UFAL");
    
         assertAll(
-	    		   () -> assertEquals("Cesmac", universidade.getNome()),
+	    		   () -> assertEquals("UFAL", universidade.getNome()),
 	    		   () -> assertEquals("3312-1212", universidade.getTelefone()),
 	    		   () -> assertEquals(1, universidade.getId())
     		   );

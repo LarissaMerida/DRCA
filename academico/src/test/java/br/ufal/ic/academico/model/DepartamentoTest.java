@@ -11,6 +11,7 @@ public class DepartamentoTest {
     	Universidade u = new Universidade("UFAL");
         assertThrows(IllegalArgumentException.class, () -> new Departamento(null, u));
         assertThrows(IllegalArgumentException.class, () -> new Departamento("", u));
+        assertThrows(NullPointerException.class, () -> new Departamento("SSS", null));
         
         Departamento d = new Departamento("Instituto de Computação", u);
      
@@ -27,10 +28,11 @@ public class DepartamentoTest {
         
     	departamento.setUniversidade( u2 );
     	departamento.setId((long) 1);
+    	departamento.setNome("UFAL");
    
         assertAll(
-	    		   () -> assertEquals("Cesmac", departamento.getNome()),
-	    		   () -> assertEquals("UFAL", departamento.getUniversidade()),
+	    		   () -> assertEquals("UFAL", departamento.getNome()),
+	    		   () -> assertEquals("UFAL", departamento.getUniversidade().getNome()),
 	    		   () -> assertEquals(1, departamento.getId())
     		   );
         

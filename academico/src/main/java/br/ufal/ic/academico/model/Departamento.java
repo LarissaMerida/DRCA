@@ -34,6 +34,10 @@ public class Departamento {
             throw new IllegalArgumentException("Universidade não pode ser nulo ou vazio: '" + universidade + "'");
         }
         this.nome = nome;
+        
+        if (universidade == null) {
+            throw new NullPointerException("universidade não pode ser nulo.");
+        }
         this.universidade = universidade;
     }
 }

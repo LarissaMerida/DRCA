@@ -14,7 +14,6 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@RequiredArgsConstructor
 public class Person {
     
     @Id

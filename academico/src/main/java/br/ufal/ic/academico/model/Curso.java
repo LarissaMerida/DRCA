@@ -22,7 +22,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@RequiredArgsConstructor
 @Entity
 public class Curso {
 	
@@ -46,6 +45,10 @@ public class Curso {
         }
 		this.nome = nome;
 		this.tipo = tipo;
+		
+		if (departamento == null) {
+            throw new NullPointerException("Departamento não pode ser nulo.");
+        }
 		this.departamento = departamento;
 		this.disciplinas = new ArrayList<Disciplina>();
 	}
