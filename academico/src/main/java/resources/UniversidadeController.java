@@ -12,8 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import DAO.UniversidadeDAO;
+import DTO.PersonDTO;
 import DTO.UniversidadeDTO;
-import br.ufal.ic.academico.exemplos.PersonDTO;
 import br.ufal.ic.academico.model.Person;
 import br.ufal.ic.academico.model.Universidade;
 import io.dropwizard.hibernate.UnitOfWork;

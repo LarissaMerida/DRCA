@@ -1,6 +1,5 @@
 package br.ufal.ic.academico;
 
-import br.ufal.ic.academico.exemplos.PersonDAO;
 import br.ufal.ic.academico.model.Person;
 import ch.qos.logback.classic.Level;
 import io.dropwizard.logging.BootstrapLogging;
@@ -20,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import DAO.PersonDAO;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;

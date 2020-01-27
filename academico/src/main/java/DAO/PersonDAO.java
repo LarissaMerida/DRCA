@@ -1,4 +1,4 @@
-package br.ufal.ic.academico.exemplos;
+package DAO;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import java.io.Serializable;

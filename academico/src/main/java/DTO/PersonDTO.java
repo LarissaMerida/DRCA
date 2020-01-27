@@ -1,4 +1,4 @@
-package br.ufal.ic.academico.exemplos;
+package DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
