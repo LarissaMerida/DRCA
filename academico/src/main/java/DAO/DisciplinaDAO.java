@@ -21,7 +21,12 @@ public class DisciplinaDAO extends AbstractDAO<Disciplina>{
     @Override
     public Disciplina get(Serializable id) throws HibernateException {
         log.info("getting disciplina: id={}", id);
-        return super.get(id);
+        Disciplina disciplina = super.get(id);
+        
+        if( disciplina != null) {
+        	return disciplina;
+        }
+        return null;
     }
     
     public List<Disciplina> list() throws HibernateException {

@@ -125,10 +125,10 @@ public class SecretariaDAOTest {
     			() -> assertNotNull(saved2.getDepartamento())
     		);
         
-        dbTesting.inTransaction(() -> daoSecretaria.remove(saved2));
         Secretaria s3 = dbTesting.inTransaction(() -> daoSecretaria.get( saved2.getId() ));
+        dbTesting.inTransaction(() -> daoSecretaria.remove(saved2));
         
-        assertNull( s3 );
+        assertNull( dbTesting.inTransaction(() -> daoSecretaria.get( s3.getId() )) );
         
         List<Secretaria> secretarias = new ArrayList<Secretaria>();
         secretarias.add( s );

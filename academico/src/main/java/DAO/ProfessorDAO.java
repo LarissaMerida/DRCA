@@ -21,7 +21,12 @@ public class ProfessorDAO extends AbstractDAO<Professor>{
     @Override
     public Professor get(Serializable id) throws HibernateException {
         log.info("getting professor: id={}", id);
-        return super.get(id);
+        Professor professor = super.get(id);
+        
+        if( professor != null) {
+        	return professor;
+        }
+        return null;
     }
     
     public List<Professor> list() throws HibernateException {

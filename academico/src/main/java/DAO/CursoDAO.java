@@ -20,7 +20,12 @@ public class CursoDAO extends AbstractDAO<Curso> {
     @Override
     public Curso get(Serializable id) throws HibernateException {
         log.info("getting curso: id={}", id);
-        return (Curso) super.get(id);
+        
+        Curso curso = super.get(id);
+        if(curso != null) {
+        	return curso;
+        }
+        return null;
     }
     
     public List<Curso> list() throws HibernateException {
