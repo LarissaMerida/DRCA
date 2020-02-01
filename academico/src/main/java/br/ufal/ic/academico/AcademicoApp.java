@@ -1,13 +1,5 @@
 package br.ufal.ic.academico;
 
-import DAO.CursoDAO;
-import DAO.DepartamentoDAO;
-import DAO.DisciplinaDAO;
-import DAO.EstudanteDAO;
-import DAO.PersonDAO;
-import DAO.ProfessorDAO;
-import DAO.SecretariaDAO;
-import DAO.UniversidadeDAO;
 import br.ufal.ic.academico.model.Curso;
 import br.ufal.ic.academico.model.Departamento;
 import br.ufal.ic.academico.model.Disciplina;
@@ -17,6 +9,14 @@ import br.ufal.ic.academico.model.Professor;
 import br.ufal.ic.academico.model.Secretaria;
 import br.ufal.ic.academico.model.Universidade;
 import br.ufal.ic.academico.model.Secretaria.Tipo;
+import dao.CursoDAO;
+import dao.DepartamentoDAO;
+import dao.DisciplinaDAO;
+import dao.EstudanteDAO;
+import dao.PersonDAO;
+import dao.ProfessorDAO;
+import dao.SecretariaDAO;
+import dao.UniversidadeDAO;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;

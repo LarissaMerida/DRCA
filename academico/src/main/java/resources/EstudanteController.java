@@ -10,11 +10,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import DAO.CursoDAO;
-import DAO.EstudanteDAO;
-import DTO.EstudanteDTO;
 import br.ufal.ic.academico.model.Curso;
 import br.ufal.ic.academico.model.Estudante;
+import dao.CursoDAO;
+import dao.EstudanteDAO;
+import dto.EstudanteDTO;
 import io.dropwizard.hibernate.UnitOfWork;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

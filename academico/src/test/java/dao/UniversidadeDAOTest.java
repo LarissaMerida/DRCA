@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 
 import static org.junit.Assert.assertNotEquals;
@@ -20,6 +20,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import br.ufal.ic.academico.model.Person;
 import br.ufal.ic.academico.model.Universidade;
+import dao.UniversidadeDAO;
 import io.dropwizard.testing.junit5.DAOTestExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import lombok.SneakyThrows;

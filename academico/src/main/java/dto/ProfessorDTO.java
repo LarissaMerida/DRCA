@@ -1,11 +1,10 @@
-package DTO;
+package dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Getter
@@ -13,9 +12,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public  class UniversidadeDTO {
+public  class ProfessorDTO {
     
-    private String nome; 
-    private String telefone;
+    private String nome;
+    
+//    public PersonDTO(Person p) {
+//    	this.name = p.getName();
+//    	this.number = p.getId();
+//    };;
     
 }

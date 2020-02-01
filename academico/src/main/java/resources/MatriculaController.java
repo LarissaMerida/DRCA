@@ -9,11 +9,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import DAO.DisciplinaDAO;
-import DAO.EstudanteDAO;
 import br.ufal.ic.academico.model.Disciplina;
 import br.ufal.ic.academico.model.Estudante;
 import br.ufal.ic.academico.model.Secretaria.Tipo;
+import dao.DisciplinaDAO;
+import dao.EstudanteDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -55,6 +55,8 @@ public class MatriculaController {
 		Estudante estudante = estudanteDAO.get(id_estudante);
 		Disciplina disciplina = disciplinaDAO.get(id_disciplina);
 		
+		log.info("Pegou estudante e disciplina ");
+		
 		if( disciplina.getEstudantes().contains(estudante) ) {
 			
 			return Response.status(400).entity("Aluno já matriculado anteriormente.").build();
@@ -70,27 +72,27 @@ public class MatriculaController {
 			return Response.status(400).entity("Aluno não matriculado por ser de pós-graduação e a disciplina ser de graduação.").build();
 		}
 		else if (  estudante.getCurso().getTipo() == Tipo.GRADUACAO && 
-				disciplina.getNivel() == Tipo.POS_GRADUACAO &&
-				estudante.getScore() >= 170) {
-			disciplina.getEstudantes().add(estudante);
-			estudante.getDisciplinas().add( disciplina );
-			return Response.status(200).entity("Aluno matriculado.").build();
+				disciplina.getNivel() == Tipo.POS_GRADUACAO) {
+			
+			if( estudante.getScore() >= 170 ) {
+				disciplina.getEstudantes().add(estudante);
+				estudante.getDisciplinas().add( disciplina );
+				return Response.status(200).entity("Aluno matriculado.").build();
+			}
+			return Response.status(400).entity("Aluno não matriculado, pois score esta < 170.").build();
 		}
 		
 		if( estudante.getScore() < disciplina.getMin_creditos()) {
+			System.out.println("AAAAAAAAAAAA$$$");
 			return Response.status(400).entity("Aluno não matriculado por c´redito mínimo insuficiente.").build();
 		}
 		if( estudante.getPre_disciplinas().containsAll( disciplina.getPre_disciplinas() ) == false) {
 			return Response.status(400).entity("Necessário pré requisito de máteria.").build();
 		}
 		
-//		if( estudante.getScore() >= disciplina.getMin_creditos() &&
-//				estudante.getPre_disciplinas().containsAll( disciplina.getPre_disciplinas() )) {
 		disciplina.getEstudantes().add(estudante);
 		estudante.getDisciplinas().add( disciplina );
 		return Response.status(200).entity("Aluno matriculado.").build();
-//		}
-//		/return Response.status(400).entity("Aluno matriculado.").build();
 	}
 	
 }

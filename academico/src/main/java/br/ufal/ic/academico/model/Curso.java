@@ -23,6 +23,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
+@RequiredArgsConstructor
 public class Curso {
 	
 	@Id

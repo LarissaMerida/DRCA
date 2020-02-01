@@ -10,12 +10,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import DAO.DepartamentoDAO;
-import DAO.UniversidadeDAO;
-import DTO.DepartamentoDTO;
-import DTO.UniversidadeDTO;
 import br.ufal.ic.academico.model.Departamento;
 import br.ufal.ic.academico.model.Universidade;
+import dao.DepartamentoDAO;
+import dao.UniversidadeDAO;
+import dto.DepartamentoDTO;
+import dto.UniversidadeDTO;
 import io.dropwizard.hibernate.UnitOfWork;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

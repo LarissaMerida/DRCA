@@ -1,4 +1,4 @@
-package DTO;
+package dto;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
 @ToString

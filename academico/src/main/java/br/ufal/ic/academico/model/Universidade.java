@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 @Getter
 @Setter
 @Entity
+@RequiredArgsConstructor
 public class Universidade {
     
     @Id

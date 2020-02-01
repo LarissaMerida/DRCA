@@ -14,11 +14,12 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
+@RequiredArgsConstructor
 public class Person {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     
     private String nome;
 

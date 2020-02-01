@@ -9,8 +9,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
+@RequiredArgsConstructor
 public class Professor extends Person {
 	
 	public Professor(String nome) {

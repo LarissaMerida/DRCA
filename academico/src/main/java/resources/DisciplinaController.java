@@ -17,11 +17,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import DAO.DisciplinaDAO;
-import DAO.ProfessorDAO;
-import DTO.DisciplinaDTO;
 import br.ufal.ic.academico.model.Disciplina;
 import br.ufal.ic.academico.model.Professor;
+import dao.DisciplinaDAO;
+import dao.ProfessorDAO;
+import dto.DisciplinaDTO;
 import io.dropwizard.hibernate.UnitOfWork;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

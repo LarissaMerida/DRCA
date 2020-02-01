@@ -31,7 +31,7 @@ public class EstudanteTest {
     			);
      
     	assertAll(
-    				() -> assertNotNull( e.getId() ),
+    				() -> assertNull( e.getId() ),
     				() -> assertEquals("Ailton", e.getNome() )
     			);
     }
@@ -46,7 +46,7 @@ public class EstudanteTest {
     	
     	Estudante e = new Estudante("Ailton", c);
 
-    	e.setId( 1);
+    	e.setId( (long) 1);
     	e.setNome("Alan");
     	e.setCurso(curso);
     	e.setScore( (long) 20);

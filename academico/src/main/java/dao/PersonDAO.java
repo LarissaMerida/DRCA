@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import java.io.Serializable;

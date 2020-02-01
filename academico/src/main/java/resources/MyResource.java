@@ -2,9 +2,9 @@ package resources;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import DAO.PersonDAO;
-import DTO.PersonDTO;
 import br.ufal.ic.academico.model.Person;
+import dao.PersonDAO;
+import dto.PersonDTO;
 import io.dropwizard.hibernate.UnitOfWork;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;

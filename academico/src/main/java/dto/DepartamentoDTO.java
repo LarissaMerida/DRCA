@@ -1,4 +1,4 @@
-package DTO;
+package dto;
 
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;

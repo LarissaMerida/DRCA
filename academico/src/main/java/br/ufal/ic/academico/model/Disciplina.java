@@ -26,6 +26,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@RequiredArgsConstructor
 public class Disciplina {
 	
 	public enum DisciplinaTipo {

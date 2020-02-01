@@ -24,6 +24,7 @@ import lombok.ToString;
 @Setter
 //@ToString(of = { "id", "tipo" })
 //@EqualsAndHashCode(of = "id")
+@RequiredArgsConstructor
 public class Secretaria {
 
     public enum Tipo {

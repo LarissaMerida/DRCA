@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 
 import static org.junit.Assert.assertNotEquals;
@@ -26,6 +26,11 @@ import br.ufal.ic.academico.model.Professor;
 import br.ufal.ic.academico.model.Estudante;
 import br.ufal.ic.academico.model.Secretaria;
 import br.ufal.ic.academico.model.Secretaria.Tipo;
+import dao.CursoDAO;
+import dao.DepartamentoDAO;
+import dao.DisciplinaDAO;
+import dao.EstudanteDAO;
+import dao.UniversidadeDAO;
 import br.ufal.ic.academico.model.Universidade;
 import io.dropwizard.testing.junit5.DAOTestExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
@@ -104,7 +109,7 @@ public class EstudanteDAOTest {
         		);
         
         
-        e_saved.setId( (int) 1);
+        e_saved.setId( (long) 1);
         e_saved.setNome("Alan");
         e_saved.setScore((long) 10);
         
@@ -181,7 +186,7 @@ public class EstudanteDAOTest {
         Estudante e = new Estudante("Ailton", c_saved);  
         Estudante e_saved = dbTesting.inTransaction(() -> daoEstudante.persist(e));
 
-        e_saved.setId(1);
+        e_saved.setId((long) 1);
         e_saved.setNome("Roberta");
         e_saved.setScore((long) 20);
         

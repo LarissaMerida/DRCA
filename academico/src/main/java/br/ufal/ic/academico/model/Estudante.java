@@ -22,6 +22,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
+@RequiredArgsConstructor
 public class Estudante extends Person {
     private Long score;
     

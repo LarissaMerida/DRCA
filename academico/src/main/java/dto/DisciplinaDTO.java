@@ -1,4 +1,4 @@
-package DTO;
+package dto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,8 +23,10 @@ import br.ufal.ic.academico.model.Disciplina.DisciplinaTipo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
+@Setter
 @Getter
 @RequiredArgsConstructor
 @AllArgsConstructor

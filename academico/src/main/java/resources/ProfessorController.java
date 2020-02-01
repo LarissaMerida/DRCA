@@ -11,9 +11,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import DAO.ProfessorDAO;
-import DTO.ProfessorDTO;
 import br.ufal.ic.academico.model.Professor;
+import dao.ProfessorDAO;
+import dto.ProfessorDTO;
 import io.dropwizard.hibernate.UnitOfWork;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

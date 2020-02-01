@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 
 import static org.junit.Assert.assertNotEquals;
@@ -26,6 +26,11 @@ import br.ufal.ic.academico.model.Professor;
 import br.ufal.ic.academico.model.Estudante;
 import br.ufal.ic.academico.model.Secretaria;
 import br.ufal.ic.academico.model.Secretaria.Tipo;
+import dao.CursoDAO;
+import dao.DepartamentoDAO;
+import dao.DisciplinaDAO;
+import dao.SecretariaDAO;
+import dao.UniversidadeDAO;
 import br.ufal.ic.academico.model.Universidade;
 import io.dropwizard.testing.junit5.DAOTestExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;

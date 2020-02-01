@@ -19,6 +19,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
+@RequiredArgsConstructor
 public class Departamento {
     
     @Id

@@ -26,7 +26,7 @@ public class ProfessorTest {
     			);
      
     	assertAll(
-    				() -> assertNotNull( p.getId() ),
+    				() -> assertNull( p.getId() ),
     				() -> assertEquals("Ailton", p.getNome() )
     			);
     }
@@ -35,7 +35,7 @@ public class ProfessorTest {
     public void testGetters() {
     	Professor p = new Professor("Ailton");
 
-    	p.setId( 1);
+    	p.setId( (long) 1);
     	p.setNome("Alan");
    
         assertAll(
